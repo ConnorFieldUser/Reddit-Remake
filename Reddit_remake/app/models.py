@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from datetime import datetime, timedelta
 # Create your models here.
 
 
@@ -12,16 +13,20 @@ class Subreddit(models.Model):
 
     def __str__(self):
         return self.name
-    #
-    # def current_count(self):
-    #     count = 0
-    #     for posts in Post.objects.filter(id=self):
-    #         count += 1
+
+    @property
+    def current_count(self):
+        return Post.objects.filter(post_to_subreddit=self).count()
+
     # # method called current_count that returns how many posts
-    # def today_count(self):
+    def today_count(self):
+        hrs24 = datetime.now() - timedelta(days=1)
+        return Post.objects.filter(post_to_subreddit=self).filter(creation_time__gte=hrs24).count()
     # # method called today_count that returns posts in the last 24 hours
-    # def daily_average(self):
-    # # method called daily_average that gets the average count of posts over the last 7 days
+
+    def daily_average(self):
+        hrs24 = datetime.now() - timedelta(days=1)
+        return Post.objects.filter(post_to_subreddit=self).filter(creation_time__gte=hrs24).count()/7
 
 
 class Post(models.Model):
@@ -33,6 +38,9 @@ class Post(models.Model):
 
     post_to_subreddit = models.ForeignKey(Subreddit)
     post_to_user = models.ForeignKey(User)
+
+    def __str__(self):
+        return self.title
 
     # def is_recent(self):
     #
@@ -50,3 +58,6 @@ class Comment(models.Model):
 
     created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "{} posted in '{}'".format(self.comment_to_user.username, self.comment_to_post.title)

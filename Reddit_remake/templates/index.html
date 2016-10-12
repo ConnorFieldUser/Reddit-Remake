@@ -5,5 +5,25 @@
     <title>index</title>
   </head>
   <body>
+
+      {% for subred in subreddits %}
+      <p>
+
+      {{ subred }}:<br>
+      {{ subred.current_count }}
+      {{ subred.today_count }}
+      {{ subred. }}
+      {% endfor %}
+
+    </p>
+
+
+    <p>
+
+        {{ junkvar.current_count }}
+
+    </p>
+
+
   </body>
 </html>
