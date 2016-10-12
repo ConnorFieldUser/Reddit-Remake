@@ -42,8 +42,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    # def is_recent(self):
-    #
+    def is_recent(self):
+        hrs24 = datetime.now() - timedelta(days=1)
+        if Post.objects.filter(creation_time__gte=hrs24):
+            return True
+
     # # method called is_recent that returns True/False depending on if the post is in the last day
     # # method called is_hot that returns True/False if the post has gotten more than 3 comments in the past 3 hours
     # def is_hot(self):

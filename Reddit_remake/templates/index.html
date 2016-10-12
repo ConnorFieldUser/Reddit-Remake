@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,14 +14,22 @@
       {{ subred }}:<br>
       {{ subred.current_count }}
       {{ subred.today_count }}
-      {{ subred. }}
+      {{ subred.daily_average }}
+      {% endfor %}
+
+      <br>
+      <br>
+
+      {% for post in posts %}
+      {{ post }}:<br>
+      {{ post.is_recent }}
       {% endfor %}
 
     </p>
 
 
     <p>
-
+        test
         {{ junkvar.current_count }}
 
     </p>

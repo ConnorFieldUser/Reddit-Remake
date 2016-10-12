@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from app.models import Subreddit
-# , Post, Comment
+from app.models import Subreddit, Post
+# , Comment
 
 # Create your views here.
 
@@ -8,6 +8,7 @@ from app.models import Subreddit
 def index_view(request):
     context = {
         "subreddits": Subreddit.objects.all(),
-        "junkvar": Subreddit.objects.get(id=1)
+        "junkvar": Subreddit.objects.get(id=1),
+        "posts": Post.objects.all()
     }
     return render(request, 'index.html', context)
