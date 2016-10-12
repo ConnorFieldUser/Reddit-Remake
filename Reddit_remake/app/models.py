@@ -46,10 +46,18 @@ class Post(models.Model):
         hrs24 = datetime.now() - timedelta(days=1)
         if Post.objects.filter(creation_time__gte=hrs24):
             return True
+        else:
+            return False
 
     # # method called is_recent that returns True/False depending on if the post is in the last day
     # # method called is_hot that returns True/False if the post has gotten more than 3 comments in the past 3 hours
-    # def is_hot(self):
+    def is_hot(self):
+        hrs78 = datetime.now() - timedelta(days=3)
+        if Comment.objects.filter(comment_to_post=self).filter(created_time__gt=hrs78).count() > 3:
+            # if Post.objects.filter(creation_time__gte=hrs78):
+            return True
+        else:
+            return False
 
 
 class Comment(models.Model):

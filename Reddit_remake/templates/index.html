@@ -23,7 +23,18 @@
       {% for post in posts %}
       {{ post }}:<br>
       {{ post.is_recent }}
+      <br>
+      {{ post.is_hot }}
       {% endfor %}
+
+<br><br>
+
+    {% for comment in comments %}
+    {{ comment }}
+    {% endfor %}
+
+
+
 
     </p>
 
