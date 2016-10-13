@@ -12,3 +12,13 @@ def index_view(request):
         "comments": Comment.objects.all()
     }
     return render(request, 'index.html', context)
+
+
+def testing_view(request):
+    context = {
+        "subreddits": Subreddit.objects.all(),
+        "junkvar": Subreddit.objects.get(id=1),
+        "posts": Post.objects.all(),
+        "comments": Comment.objects.all()
+    }
+    return render(request, 'testing.html', context)
