@@ -1,5 +1,8 @@
 from django.shortcuts import render
+
 from app.models import Subreddit, Post, Comment
+
+from django.views.generic import DetailView
 
 # Create your views here.
 
@@ -22,3 +25,14 @@ def testing_view(request):
         "comments": Comment.objects.all()
     }
     return render(request, 'testing.html', context)
+
+
+def subreddits_view(request):
+    context = {
+        "subreddits": Subreddit.objects.all(),
+    }
+    return render(request, "subreddits.html", context)
+
+
+class SubredditDetailView(DetailView):
+    model = Subreddit

@@ -3,11 +3,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Red-It(official)</title>
+    <title>{% block title %}Red-It(official){% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
         <style media="screen">
         body {
-          background-color: green; color: white; font-family:sans-serif;
+          background-color: black; color: white; font-family:sans-serif;
         }
         </style>
   </head>
@@ -16,7 +16,7 @@
 
     <div class="container">
       ---------------------
-      <h1><span style="color:red; font-family:impact; text-decoration:underline;">RED-IT</span></h1>
+      <h1><span style="color:red; font-family:impact; text-decoration:underline; background-color:black">RED-IT</span></h1>
       ---------------------
     {% block content %}
     {% endblock %}

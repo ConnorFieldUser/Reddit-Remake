@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ subreddit.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ subreddit.name }}</h1>
+<h4>{{ subreddit.description }}</h4>
+{% endblock %}
