@@ -60,6 +60,9 @@ class Post(models.Model):
         else:
             return False
 
+        class Meta:
+            ordering = ('-creation_time')
+
 
 class Comment(models.Model):
 

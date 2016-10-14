@@ -7,7 +7,7 @@
 <h4>{{ subreddit.description }}</h4>
 
 
-{% for reddit in object.post_set.all %}
+{% for reddit in object.post_set.all|slice:":20" %}
 <div class="panel panel-default">
 <div class="panel-body">
 <a href="{% url 'subreddit_detail_view' subreddit.id %}"><h3 style="color:red;">{{ reddit }}</h3></a>
