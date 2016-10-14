@@ -35,4 +35,4 @@ def subreddits_view(request):
 
 
 class SubredditDetailView(DetailView):
-    model = Subreddit
+    queryset = Subreddit.objects.all().order_by("-creation_time")

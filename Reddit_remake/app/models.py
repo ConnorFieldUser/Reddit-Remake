@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# from django.dispatch import reciever
 from datetime import datetime, timedelta
+
+
+# from django.db.models.signal import post_save
 # Create your models here.
 
 
@@ -69,3 +73,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return "{} posted in '{}'".format(self.comment_to_user.username, self.comment_to_post.title)
+
+
+# class Profile(models.Model):
+#
+#     user = models.OneToOneField('auth.User')
+#     fav_snack = models.CharField(max_length=25)
+#
+#     @reciever(post_save, sender='auth.User')
+#     def creae_user_profile(**kwargs):
+#         created = kwargs.get('created')
+#         instance = kwargs.get('instance')
+#         if created:
+#             Profile.objects.create(user=instance)
