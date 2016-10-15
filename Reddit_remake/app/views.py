@@ -47,6 +47,17 @@ class PostDetailView(DetailView):
     model = Post
 
 
+class SubredditCreateView(CreateView):
+    model = Subreddit
+    success_url = "/subreddits"
+    fields = ('name', 'description')
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        return super().form_valid(form)
+
+
 class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm

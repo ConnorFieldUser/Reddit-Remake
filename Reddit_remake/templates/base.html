@@ -18,6 +18,15 @@
       ---------------------
       <h1><span style="color:red; font-family:impact; text-decoration:underline; background-color:black">RED-IT</span></h1>
       ---------------------
+
+        |<a href="{% url 'subreddits_view' %}"> Sub-Red_Its </a>|
+
+
+<p>
+<h3 style="text-align:; float:right;">{{ request.user }}</h3>
+</p>
+
+
     {% block content %}
     {% endblock %}
 
