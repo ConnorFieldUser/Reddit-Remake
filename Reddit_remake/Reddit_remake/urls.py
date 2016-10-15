@@ -13,15 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 
-from app.views import index_view, testing_view, subreddits_view, SubredditDetailView
+from app.views import index_view, testing_view, subreddits_view, SubredditDetailView, \
+                      PostDetailView, UserCreateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url('^', include('django.contrib.auth.urls')),
+    url(r'^create_user/$', UserCreateView.as_view(), name="user_create_view"),
     url(r'^$', index_view, name="index_view"),
     url(r'^testing/', testing_view, name="testing_view"),
     url(r'^subreddits/$', subreddits_view, name="subreddits_view"),
-    url(r'^subreddits/(?P<pk>\d+)/$', SubredditDetailView.as_view(), name="subreddit_detail_view")
+    url(r'^subreddits/(?P<pk>\d+)/$', SubredditDetailView.as_view(), name="subreddit_detail_view"),
+    url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name="post_detail_view")
 ]

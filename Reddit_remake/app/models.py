@@ -75,7 +75,7 @@ class Comment(models.Model):
     modified_time = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "{} posted in '{}'".format(self.comment_to_user.username, self.comment_to_post.title)
+        return "{} commented on '{}'".format(self.comment_to_user.username, self.comment_to_post.title)
 
 
 # class Profile(models.Model):
