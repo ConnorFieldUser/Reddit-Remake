@@ -3,7 +3,7 @@ from django.shortcuts import render
 from app.models import Subreddit, Post, Comment
 
 from django.views.generic import DetailView
-from django.views.generic.edit import CreateView  # UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from django.contrib.auth.models import User
 
@@ -51,6 +51,23 @@ class SubredditCreateView(CreateView):
     model = Subreddit
     success_url = "/subreddits"
     fields = ('name', 'description')
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class SubredditUpdateView(UpdateView):
+    model = Subreddit
+    success_url = "/subreddits"
+    fields = ('name', 'description')
+
+
+class PostCreateView(CreateView):
+    model = Post
+    success_url = "/subreddits"
+    fields = ('title', 'description')
 
     def form_valid(self, form):
         instance = form.save(commit=False)

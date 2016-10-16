@@ -6,6 +6,12 @@
   <h2>Sub-Red-Its</h2><br>
 
 
+{% if not subreddits %}
+<p>
+  No subreddits exist yet.
+</p>
+{% endif %}
+
   {% for subreddit in subreddits %}
   <div class="panel panel-default">
   <div class="panel-body">
@@ -14,6 +20,16 @@
        <h6 style="color:blue">Posts: {{ subreddit.current_count }}</h6>
 </div>
 </div>
+
+
+
   {% endfor %}
+
+
+  <ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="{% url 'subreddit_create_view' %}">New Sub-Red-It</a></li>
+  </ul>
+
+
 
 {% endblock %}

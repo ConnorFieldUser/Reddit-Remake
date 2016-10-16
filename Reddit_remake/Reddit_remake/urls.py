@@ -17,7 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from app.views import index_view, testing_view, subreddits_view, SubredditDetailView, \
-                      PostDetailView, UserCreateView, SubredditCreateView
+                      PostDetailView, UserCreateView, SubredditCreateView, SubredditUpdateView, \
+                      PostCreateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,4 +30,6 @@ urlpatterns = [
     url(r'^subreddits/(?P<pk>\d+)/$', SubredditDetailView.as_view(), name="subreddit_detail_view"),
     url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name="post_detail_view"),
     url(r'^subreddit/create$', SubredditCreateView.as_view(), name="subreddit_create_view"),
+    url(r'^subreddit/(?P<pk>\d+)/update/$', SubredditUpdateView.as_view(), name="subreddit_update_view"),
+    url(r'^post/create$', PostCreateView.as_view(), name="post_create_view")
 ]
