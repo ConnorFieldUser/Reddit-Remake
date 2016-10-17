@@ -6,46 +6,46 @@
 
 
 
-<h4>{{ post.post_to_subreddit.name }}</h4>
+  <h4>{{ post.post_to_subreddit.name }}</h4>
 
-<h3 style="text-decoration:underline;">{{ post }}</h3>
-
-
+  <h3 style="text-decoration:underline;">{{ post }}</h3>
 
 
-<div class="panel panel-default">
-<div class="panel-body">
-
-<span style="color:red">{{ post.description }}</span>
-
-<br>
-
-{% if post.is_hot %}
-  <h6 style="text-align:left; float:left; color:orange; ">HOT &nbsp; </h6>
-{% endif %}
-
-{% if post.is_recent %}
-<h6 style="text-align:right; float:left; color:blue">Recent  </h6>
-
-{% endif %}
 
 
-</div>
-</div>
-
-
-<br><br><br>
-
-
-{% for comment in object.comment_set.all %}
   <div class="panel panel-default">
-  <div class="panel-heading">Username</div>
   <div class="panel-body">
-  <p style="color:blue;">{{ comment.comment_text }}</p>
-  </div>
-</div>
 
-{% endfor %}
+    <span style="color:red">{{ post.description }}</span>
+
+  <br>
+
+    {% if post.is_hot %}
+      <h6 style="text-align:left; float:left; color:orange; ">HOT &nbsp; </h6>
+    {% endif %}
+
+    {% if post.is_recent %}
+      <h6 style="text-align:right; float:left; color:blue">Recent  </h6>
+
+    {% endif %}
+
+
+  </div>
+  </div>
+
+
+  <br><br><br>
+
+
+  {% for comment in object.comment_set.all %}
+    <div class="panel panel-default">
+    <div class="panel-heading">Username</div>
+      <div class="panel-body">
+      <p style="color:blue;">{{ comment.comment_text }}</p>
+    </div>
+    </div>
+
+  {% endfor %}
 
 
 {% endblock %}

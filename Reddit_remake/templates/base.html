@@ -4,12 +4,12 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}Red-It(official){% endblock %}</title>
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
-        <style media="screen">
-        body {
-          background-color: black; color: white; font-family:sans-serif;
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
+    <style media="screen">
+      body {
+        background-color: black; color: white; font-family:sans-serif;
         }
-        </style>
+    </style>
   </head>
 
   <body>
@@ -19,12 +19,10 @@
       <h1><span style="color:red; font-family:impact; text-decoration:underline; background-color:black">RED-IT</span></h1>
       ---------------------
 
-        |<a href="{% url 'subreddits_view' %}"> Sub-Red_Its </a>|
+      |<a href="{% url 'subreddits_view' %}"> Sub-Red_Its </a>|
 
 
-<p>
-<h3 style="text-align:; color:blue; float:right;">{{ request.user }}</h3>
-</p>
+      <p><h3 style="text-align:; color:blue; float:right;">{{ request.user }}</h3></p>
 
 
     {% block content %}

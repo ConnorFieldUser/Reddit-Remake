@@ -32,5 +32,5 @@ urlpatterns = [
     url(r'^subreddit/create$', SubredditCreateView.as_view(), name="subreddit_create_view"),
     url(r'^subreddit/(?P<pk>\d+)/update/$', SubredditUpdateView.as_view(), name="subreddit_update_view"),
     url(r'^post/create$', PostCreateView.as_view(), name="post_create_view"),
-    url(r'^subreddits/(?P<pk>\d+)/post/create$', PostCreateView.as_view(), name="sub_post_create_view"),
+    # url(r'^subreddits/(?P<pk>\d+)/post/create$', PostCreateView.as_view(), name="post_create_view"),
 ]
