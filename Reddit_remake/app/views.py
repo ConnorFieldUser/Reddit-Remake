@@ -66,8 +66,8 @@ class SubredditUpdateView(UpdateView):
 
 class PostCreateView(CreateView):
     model = Post
-    success_url = "/subreddits"
-    fields = ('title', 'description')
+    success_url = "/subreddits/"
+    fields = ('title', 'description', 'post_to_subreddit', 'post_to_user')
 
     def form_valid(self, form):
         instance = form.save(commit=False)

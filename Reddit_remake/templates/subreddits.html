@@ -7,23 +7,18 @@
 
 
 {% if not subreddits %}
-<p>
-  No subreddits exist yet.
-</p>
+<p>No subreddits exist yet.</p>
 {% endif %}
 
-  {% for subreddit in subreddits %}
+{% for subreddit in subreddits %}
   <div class="panel panel-default">
-  <div class="panel-body">
-  <a href="{% url 'subreddit_detail_view' subreddit.id %}"><h3 style="color:red;">{{ subreddit }}</h3></a>
+     <div class="panel-body">
+       <a href="{% url 'subreddit_detail_view' subreddit.id %}"><h3 style="color:red;">{{ subreddit }}</h3></a>
        <p style="color:red">{{ subreddit.description }}</p>
        <h6 style="color:blue">Posts: {{ subreddit.current_count }}</h6>
-</div>
-</div>
-
-
-
-  {% endfor %}
+     </div>
+  </div>
+{% endfor %}
 
 
   <ul class="nav nav-pills">

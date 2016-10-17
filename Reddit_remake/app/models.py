@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# from django.dispatch import reciever
+# from django.dispatch import receiver
 from datetime import datetime, timedelta
 
 
-# from django.db.models.signal import post_save
+# from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -29,7 +29,7 @@ class Subreddit(models.Model):
     # # method called today_count that returns posts in the last 24 hours
 
     def daily_average(self):
-        hrs24 = datetime.now() - timedelta(days=1)
+        hrs24 = datetime.now() - timedelta(days=30)
         return Post.objects.filter(post_to_subreddit=self).filter(creation_time__gte=hrs24).count()/7
 
 
@@ -77,14 +77,14 @@ class Comment(models.Model):
     def __str__(self):
         return "{} commented on '{}'".format(self.comment_to_user.username, self.comment_to_post.title)
 
-
+#
 # class Profile(models.Model):
 #
 #     user = models.OneToOneField('auth.User')
 #     fav_snack = models.CharField(max_length=25)
 #
-#     @reciever(post_save, sender='auth.User')
-#     def creae_user_profile(**kwargs):
+#     @receiver(post_save, sender='auth.User')
+#     def create_user_profile(**kwargs):
 #         created = kwargs.get('created')
 #         instance = kwargs.get('instance')
 #         if created:
