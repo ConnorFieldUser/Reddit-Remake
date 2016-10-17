@@ -71,8 +71,10 @@ class PostCreateView(CreateView):
 
     def form_valid(self, form):
         instance = form.save(commit=False)
-        instance.user = self.request.user
-        instance.subreddit = Subreddit.objects.get(id=self.kwargs['pk'])
+        instance.post_to_user = self.request.user
+        instance.post_to_subreddit = Subreddit.objects.get(id=self.kwargs['pk'])
+
+
         return super().form_valid(form)
 
 

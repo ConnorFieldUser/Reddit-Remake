@@ -21,7 +21,7 @@
 
 
   <ul class="nav nav-pills">
-    <li role="presentation" class="active"><a href="{% url 'post_create_view' %}">New Post</a></li>
+    <li role="presentation" class="active"><a href="{% url 'post_create_view' object.id %}">New Post</a></li>
     <li role="presentation" class="active"><a href="{% url 'subreddit_update_view' object.id %}">Update this sub-red-It</a></li>
   </ul>
 
