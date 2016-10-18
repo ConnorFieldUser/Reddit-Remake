@@ -9,6 +9,7 @@
 
   {% for post in object.post_set.all|slice:":20" %}
     <div class="panel panel-default">
+      <div class="panel-heading">{{ post.post_to_user }}</div>
     <div class="panel-body">
       <a href="{% url 'post_detail_view' post.id %}"><h3 style="color:red;">{{ post }}</h3></a>
       <p style="color:red">{{ post.description }}</p>

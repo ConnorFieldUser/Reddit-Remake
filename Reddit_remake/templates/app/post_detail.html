@@ -11,9 +11,8 @@
   <h3 style="text-decoration:underline;">{{ post }}</h3>
 
 
-
-
   <div class="panel panel-default">
+    <div class="panel-heading">{{ post.post_to_user }}</div>
   <div class="panel-body">
 
     <span style="color:red">{{ post.description }}</span>
@@ -39,13 +38,17 @@
 
   {% for comment in object.comment_set.all %}
     <div class="panel panel-default">
-    <div class="panel-heading">Username</div>
+    <div class="panel-heading">{{ comment.comment_to_user }}</div>
       <div class="panel-body">
       <p style="color:blue;">{{ comment.comment_text }}</p>
+<a href="{% url 'comment_update_view' comment.id %}">{{ comment.comment_text }}</a>
     </div>
     </div>
-
   {% endfor %}
 
+  <ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="{% url 'comment_create_view' object.id %}">New Comment</a></li>
+    <li role="presentation" class="active"><a href="{% url 'post_update_view' object.id %}">Update Post</a></li>
+  </ul>
 
 {% endblock %}

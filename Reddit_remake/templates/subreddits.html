@@ -6,11 +6,11 @@
   <h2>Sub-Red-Its</h2><br>
 
 
-{% if not subreddits %}
-<p>No subreddits exist yet.</p>
-{% endif %}
+  {% if not object_list %}
+  <p>No subreddits exist yet.</p>
+  {% endif %}
 
-{% for subreddit in subreddits %}
+{% for subreddit in object_list %}
   <div class="panel panel-default">
      <div class="panel-body">
        <a href="{% url 'subreddit_detail_view' subreddit.id %}"><h3 style="color:red;">{{ subreddit }}</h3></a>

@@ -21,8 +21,17 @@
 
       |<a href="{% url 'subreddits_view' %}"> Sub-Red_Its </a>|
 
+        {% if not request.user.is_authenticated %}
+        <a href="{% url 'user_create_view' %}"> Create User </a>|
+          <a href="{% url 'login' %}"> login </a>|
+          {% else %}
+          <a href="{% url 'logout' %}?next={% url 'login' %}"> logout </a>|
+          {% endif %}
+
 
       <p><h3 style="text-align:; color:blue; float:right;">{{ request.user }}</h3></p>
+
+
 
 
     {% block content %}

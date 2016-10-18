@@ -15,7 +15,6 @@ from django.contrib.auth.forms import UserCreationForm
 def index_view(request):
     context = {
         "subreddits": Subreddit.objects.all(),
-        "junkvar": Subreddit.objects.get(id=1),
         "posts": Post.objects.all(),
         "comments": Comment.objects.all()
     }
@@ -33,6 +32,7 @@ def testing_view(request):
 
 
 class SubredditView(ListView):
+    template_name = 'subreddits.html'
     model = Subreddit
 
 # def subreddits_view(request):
@@ -43,7 +43,6 @@ class SubredditView(ListView):
 
 
 class SubredditDetailView(DetailView):
-    template_name = 'subreddits.html'
     model = Subreddit
 
 
@@ -102,13 +101,13 @@ class CommentListView(ListView):
 
 class CommentCreateView(CreateView):
     model = Comment
-    success_url = "/comments/"
-    fields = ()
+    success_url = "/"
+    fields = ('comment_text',)
 
     def form_valid(self, form):
         instance = form.save(commit=False)
-        instance.post_to_user = self.request.user
-        instance.post_to_subreddit = Subreddit.objects.get(id=self.kwargs['comment_id'])
+        instance.comment_to_user = self.request.user
+        instance.comment_to_post = Post.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
 
 
@@ -118,7 +117,5 @@ class CommentDetailView(DetailView):
 
 class CommentUpdateView(UpdateView):
     model = Comment
-
-
-# class CommentDeleteView(DeleteView):
-#     model = Comment
+    success_url = "/"
+    fields = ('comment_text',)

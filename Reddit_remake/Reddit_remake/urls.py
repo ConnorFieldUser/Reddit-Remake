@@ -25,7 +25,6 @@ from app.views import index_view, \
                       PostCreateView, \
                       PostDetailView, \
                       PostUpdateView, \
-                      CommentView, \
                       CommentCreateView, \
                       CommentDetailView, \
                       CommentUpdateView, \
@@ -39,21 +38,18 @@ urlpatterns = [
     url(r'^testing/', testing_view, name="testing_view"),
 
     # SUBREDDIT
-    url(r'^subreddits/create$', SubredditCreateView.as_view(), name="subreddit_create_view"),
-    url(r'^subreddits$', SubredditView.as_view(), name="subreddit_list_view"),
-    url(r'^subreddits/(?P<pk>\d+)$', SubredditDetailView.as_view(), name="subreddit_detail_view"),
-    url(r'^subreddits/(?P<pk>\d+)/update$', SubredditUpdateView.as_view(), name="subreddit_update_view"),
-    # url(r'^post/create$', PostCreateView.as_view(), name="post_create_view"),
+    url(r'^subreddits/create/$', SubredditCreateView.as_view(), name="subreddit_create_view"),
+    url(r'^subreddits/$', SubredditView.as_view(), name="subreddits_view"),
+    url(r'^subreddits/(?P<pk>\d+)/$', SubredditDetailView.as_view(), name="subreddit_detail_view"),
+    url(r'^subreddits/(?P<pk>\d+)/update/$', SubredditUpdateView.as_view(), name="subreddit_update_view"),
 
     # POSTS
-    url(r'^subreddits/(?P<pk>\d+)/posts/create$', PostCreateView.as_view(), name="post_create_view"),
-    url(r'^posts/(?P<post_id>\d+)$', PostDetailView.as_view(), name="post_detail_view"),
-    url(r'^posts/(?P<post_id>\d+)/update$', PostUpdateView.as_view(), name="post_update_view"),
+    url(r'^subreddits/(?P<pk>\d+)/posts/create/$', PostCreateView.as_view(), name="post_create_view"),
+    url(r'^posts/(?P<pk>\d+)/$', PostDetailView.as_view(), name="post_detail_view"),
+    url(r'^posts/(?P<pk>\d+)/update/$', PostUpdateView.as_view(), name="post_update_view"),
 
     # COMMENTS
-    url(r'^posts/(?P<post_id>\d+)/comments/create$', CommentCreateView.as_view(), name="comment_create_view"),
-    url(r'^posts/(?P<post_id>\d+)/comments$', CommentView.as_view(), name="comment_list_view"),
-    url(r'^comments/(?P<comment_id>\d+)$', CommentDetailView.as_view(), name="comment_detail_view"),
-    url(r'^comments/(?P<comment_id>\d+)/update$', CommentUpdateView.as_view(), name="comment_update_view"),
-    # url(r'^subreddits/(?P<pk>\d+)/post/(?P<post_id>\d+/comment/(?P<comment_id>\d+)/', CommentDeleteView.as_view(), name="comment_delete_view"),
+    url(r'^posts/(?P<pk>\d+)/comments/create/$', CommentCreateView.as_view(), name="comment_create_view"),
+    url(r'^comments/(?P<pk>\d+)/$', CommentDetailView.as_view(), name="comment_detail_view"),
+    url(r'^comments/(?P<pk>\d+)/update/$', CommentUpdateView.as_view(), name="comment_update_view")
 ]
