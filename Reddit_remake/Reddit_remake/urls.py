@@ -16,9 +16,20 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from app.views import index_view, testing_view, subreddits_view, SubredditDetailView, \
-                      PostDetailView, UserCreateView, SubredditCreateView, SubredditUpdateView, \
-                      PostCreateView
+from app.views import index_view, \
+                      testing_view, \
+                      CommentView, \
+                      CommentCreateView, \
+                      CommentDetailView, \
+                      CommentUpdateView, \
+                      PostView, \
+                      PostCreateView, \
+                      PostDetailView, \
+                      SubredditView, \
+                      SubredditDetailView, \
+                      SubredditCreateView, \
+                      SubredditUpdateView, \
+                      UserCreateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,11 +37,24 @@ urlpatterns = [
     url(r'^create_user/$', UserCreateView.as_view(), name="user_create_view"),
     url(r'^$', index_view, name="index_view"),
     url(r'^testing/', testing_view, name="testing_view"),
-    url(r'^subreddits/$', subreddits_view, name="subreddits_view"),
-    url(r'^subreddits/(?P<pk>\d+)/$', SubredditDetailView.as_view(), name="subreddit_detail_view"),
-    url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name="post_detail_view"),
-    url(r'^subreddit/create$', SubredditCreateView.as_view(), name="subreddit_create_view"),
-    url(r'^subreddit/(?P<pk>\d+)/update/$', SubredditUpdateView.as_view(), name="subreddit_update_view"),
+
+    #SUBREDDIT
+    url(r'^subreddits/create$', SubredditCreateView.as_view(), name="subreddit_create_view"),
+    url(r'^subreddits$', SubredditView.as_view(), name="subreddit_list_view"),
+    url(r'^subreddits/(?P<pk>\d+)$', SubredditDetailView.as_view(), name="subreddit_detail_view"),
+    url(r'^subreddits/(?P<pk>\d+)/update$', SubredditUpdateView.as_view(), name="subreddit_update_view"),
     # url(r'^post/create$', PostCreateView.as_view(), name="post_create_view"),
-    url(r'^subreddits/(?P<pk>\d+)/post/create$', PostCreateView.as_view(), name="post_create_view"),
+
+    #POSTS
+    url(r'^subreddits/(?P<pk>\d+)/posts/create$', PostCreateView.as_view(), name="post_create_view"),
+    url(r'^subreddits/(?P<pk>\d+)/posts/$', PostView.as_view(), name="post_list_view"),
+    url(r'^posts/(?P<post_id>\d+)$', PostDetailView.as_view(), name="post_detail_view"),
+    url(r'^posts/(?P<post_id>\d+)/update$', PostUpdateView.as_view(), name="post_update_view"),
+
+    #COMMENTS
+    url(r'^posts/(?P<post_id>\d+)/comments/create$', CommentCreateView.as_view(), name="comment_create_view"),
+    url(r'^posts/(?P<post_id>\d+)/comments$', CommentView.as_view(), name="comment_list_view"),
+    url(r'^comments/(?P<comment_id>\d+)$', CommentDetailView.as_view(), name="comment_detail_view"),
+    url(r'^comments/(?P<comment_id>\d+)/update$', CommentUpdateView.as_view(), name="comment_update_view"),
+    # url(r'^subreddits/(?P<pk>\d+)/post/(?P<post_id>\d+/comment/(?P<comment_id>\d+)/', CommentDeleteView.as_view(), name="comment_delete_view"),
 ]
