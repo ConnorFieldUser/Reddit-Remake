@@ -32,14 +32,18 @@ def testing_view(request):
     return render(request, 'testing.html', context)
 
 
-def subreddits_view(request):
-    context = {
-        "subreddits": Subreddit.objects.all(),
-    }
-    return render(request, "subreddits.html", context)
+class SubredditView(ListView):
+    model = Subreddit
+
+# def subreddits_view(request):
+#     context = {
+#         "subreddits": Subreddit.objects.all(),
+#     }
+#     return render(request, "subreddits.html", context)
 
 
 class SubredditDetailView(DetailView):
+    template_name = 'subreddits.html'
     model = Subreddit
 
 
@@ -78,6 +82,12 @@ class PostCreateView(CreateView):
         instance.post_to_user = self.request.user
         instance.post_to_subreddit = Subreddit.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
+
+
+class PostUpdateView(UpdateView):
+        model = Post
+        success_url = "/"
+        fields = ('title', 'description')
 
 
 class UserCreateView(CreateView):
