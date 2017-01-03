@@ -1,1 +1,7 @@
 .direnv/
+__pycache__/
+.envrc
+db.sqlite3
+.tmp
+.DS_Store
+*.pyc
